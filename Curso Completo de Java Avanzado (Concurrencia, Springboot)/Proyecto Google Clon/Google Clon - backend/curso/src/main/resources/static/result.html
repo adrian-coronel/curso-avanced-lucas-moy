@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- FONTS GOOGLE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/result.css">
+  <title>Search Engine</title>
+</head>
+<body>
+  
+  <div id="main">
+    <img id="logo" src="img/logo.png" /> <!--Logo-->
+    <input id="txtSearch" type="text" />
+    <hr/>
+    <div id="results">
+      <span class="total-results">Cerca de 25,270,000,000 resultados (0.62 segundos)</span>
+      <div id="links">
+        <div class="result">
+          <h3>Noticias - BBC News Mundo</h3>
+          <span>Google Noticias, conocido en España como Google News, es un agregador y buscador de noticias automatizado que rastrea de forma constante la información de los principales medios de comunicación en línea. El sitio web de Google Noticias, se actualiza cada 15 minutos y fue lanzado en versión beta en septiembre de 2002. </span>
+        </div>
+        <div class="result">
+          <h3>Noticias - BBC News Mundo</h3>
+          <span>Google Noticias, conocido en España como Google News, es un agregador y buscador de noticias automatizado que rastrea de forma constante la información de los principales medios de comunicación en línea. El sitio web de Google Noticias, se actualiza cada 15 minutos y fue lanzado en versión beta en septiembre de 2002. </span>
+        </div>
+        <div class="result">
+          <h3>Noticias - BBC News Mundo</h3>
+          <span>Google Noticias, conocido en España como Google News, es un agregador y buscador de noticias automatizado que rastrea de forma constante la información de los principales medios de comunicación en línea. El sitio web de Google Noticias, se actualiza cada 15 minutos y fue lanzado en versión beta en septiembre de 2002. </span>
+        </div>
+        <div class="result">
+          <h3>Noticias - BBC News Mundo</h3>
+          <span>Google Noticias, conocido en España como Google News, es un agregador y buscador de noticias automatizado que rastrea de forma constante la información de los principales medios de comunicación en línea. El sitio web de Google Noticias, se actualiza cada 15 minutos y fue lanzado en versión beta en septiembre de 2002. </span>
+        </div>
+        <div class="result">
+          <h3>Noticias - BBC News Mundo</h3>
+          <span>Google Noticias, conocido en España como Google News, es un agregador y buscador de noticias automatizado que rastrea de forma constante la información de los principales medios de comunicación en línea. El sitio web de Google Noticias, se actualiza cada 15 minutos y fue lanzado en versión beta en septiembre de 2002. </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    let aux = document.location.href.split('?query='); //Esto me obtiene los valores de la query (Array [ "http://127.0.0.1:5500/result.html", "new" ])
+    let query = aux[1]; //Extraemos el segundo valor (Array [ "new" ])
+    document.getElementById('txtSearch').value = query;
+
+
+    /*------- CONSULTA AL SERVIDOR -------*/
+    fetch('http://localhost:8080/api/search?query=' + query) //El resultado del fetch es una promesa
+    .then(response => response.json()) //Que me transforme la respuesta a JSON
+    .then(json => {
+      console.log(json);
+
+      let html = ''; //Me sirve para que se vayan concatenando dentro del "for"
+
+      for (let resultSearch of json){ //Para un Array se usa "of" y el "in" para recorrer las propiedades de un objeto
+      //ME ESTA RECORRIENDO EL "JSON"
+          //console.log(resultSearch); <<<<<<<<<<<<
+          html += getHtmlResueltSearch(resultSearch);
+          
+      }
+      document.getElementById("links").outerHTML = html; //El outerHTML obtiene el fragmento HTML serializado que describe el elemento incluyendo sus descendientes.
+      //console.log(html);<<<<<<<<<<<<<<
+    });//Aca me lanso un error de CROSS -> Se da cuando hacemos un llamado a un servidor y este se encuentra en un puerto diferente(se da de los 2 lados)
+    //RESUELVO EL PROBLEMA EN JAVA "SearchController"
+
+    //>>>>>>> SIN EMBARGO VOY A PASAR TODOS LOS ARCHIVOS A INTELLIJ IDEA PARA QUE SE EJECUTE DESDE EL MISMO PUERTO
+  
+    function getHtmlResueltSearch(resultSearch){
+      return `<div class="result">
+                <h3><a href="${resultSearch.url}" target="_blank">${resultSearch.title}</a></h3>
+                <span>${resultSearch.description}</span>
+              </div>`
+              //me pinta el titulo y descripcion del valor obtenido por el JSON
+    }
+  </script>
+
+</body>
+</html>
+   

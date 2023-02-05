@@ -1,0 +1,51 @@
+Titulo curso: Curso de Java Fullstack Completo (springboot, hibernate, JWT, API Rest)
+Canal: Lucas Moy
+https://www.youtube.com/watch?v=7vHzVN0EiQc&t=5827s
+
+En el curso veremos:
+-- Como crear un sistema de gestión de usuario desde 0.
+-- Como funcionan los servidores en la nube para guardar estos sistemas.
+
+Conceptos a aprender:
+
+--  Patron de diseño de "Inyección de Dependencias".
+--  Estandar JWT de control de sesiones de Usuario.
+--  Creación de servicios REST con el framework Spring Boot.
+--  Spring Boot.
+--  Hibernate
+--  Como trabajar con Repositorios de código en GIT.
+
+
+---- QUE ES UN SERVIDOR ----
+Computadora que nos sirve para subir nuestro sitio o aplicación web.
+(Un servidor es un conjunto de computadoras capaz de atender las peticiones de un cliente y devolverle una respuesta en concordancia.)
+
+
+---- Para crear un proyecto en IntelliJ IDEA lo hacemos desde internet, para comenzar con librerias predispuestas:
+https://start.spring.io/
+
+
+--- MAVEN Y GRADEN ----
+Son LIBRERIAS que permiten descargar otras LIBRERIAS al momento de compilar.
+
+--JAR ase referencia a librerias.
+--WAR a aplicaciones web.
+
+
+
+
+----- LOS CONTROLADORES SIRVEN PARA MANEJAR LAS URL -----
+Por ejemplo, si el usuario inserta una url devuelva un (pagina)
+
+
+--- DESCARGO UNA PLANTILLA PARA MI PAGINA ----
+https://startbootstrap.com/theme/sb-admin-2
+
+
+
+
+
+
+
+
+
